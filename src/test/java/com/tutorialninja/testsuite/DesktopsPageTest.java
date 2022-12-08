@@ -6,6 +6,8 @@ import com.tutorialninja.testbase.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class DesktopsPageTest extends BaseTest {
     DesktopsPage desktopsPage=new DesktopsPage();
 
@@ -14,13 +16,18 @@ public class DesktopsPageTest extends BaseTest {
     public void verifyProductArrangeInAlphaBaticalOrder()throws InterruptedException {
         desktopsPage.mouseHoverAndClickOnDesktops();
         desktopsPage.clickOnAllDesktops();
-        desktopsPage.getAllTheProductsFromAllDeskTopPageAndSortInReverseOrder();
+        //desktopsPage.getAllTheProductsFromAllDeskTopPageAndSortInReverseOrder();
         Thread.sleep(2000);
-        desktopsPage.clickOnZtoA();
+        String aftersort= String.valueOf(desktopsPage.getAllTheProductsFromAllDeskTopPageAndSortInReverseOrder());
+       // desktopsPage.clickOnZtoA();
         desktopsPage.selectZtoAoption();
         desktopsPage.afterFilterZtoAGetAllProduct();
-        Assert.assertEquals(desktopsPage.getAllTheProductsFromAllDeskTopPageAndSortInReverseOrder(),desktopsPage.afterFilterZtoAGetAllProduct());
+       // String aftersort= String.valueOf(desktopsPage.getAllTheProductsFromAllDeskTopPageAndSortInReverseOrder());
+        String afterclickZtoA= String.valueOf(desktopsPage.afterFilterZtoAGetAllProduct());
+        //Assert.assertEquals(desktopsPage.getAllTheProductsFromAllDeskTopPageAndSortInReverseOrder(),desktopsPage.afterFilterZtoAGetAllProduct());
 //Assert.assertEquals(desktopsPage.getAllTheProductsFromAllDeskTopPageAndSortInReverseOrder(),desktopsPage.selectZtoAoption());
+
+    Assert.assertEquals(aftersort,afterclickZtoA);
     }
 
 

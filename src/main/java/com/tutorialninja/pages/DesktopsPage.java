@@ -1,6 +1,5 @@
 package com.tutorialninja.pages;
 
-import com.google.common.collect.ImmutableList;
 import com.tutorialninja.utility.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,30 +21,34 @@ public class DesktopsPage extends Utility {
         clickOnElement(alldesktops);
     }
 
-    public List<String> getAllTheProductsFromAllDeskTopPageAndSortInReverseOrder() {
+    public ArrayList<String> getAllTheProductsFromAllDeskTopPageAndSortInReverseOrder() {
         List<WebElement> products = driver.findElements(By.xpath("//h4/a"));
         ArrayList<String> originalProductsName = new ArrayList<>();
         for (WebElement e : products) {
             originalProductsName.add(e.getText());
         }
-        System.out.println(originalProductsName);
+        System.out.println("Original Products"+originalProductsName);
         // Sort By Reverse order
         Collections.reverse(originalProductsName);
-        System.out.println(originalProductsName);
+       // System.out.println("After sort it to reverse order "+originalProductsName);
 return originalProductsName;
     }
 
-    By sortByZtoA = By.id("input-sort");
+    By sortByZtoA =By.xpath("//select[@id='input-sort'and@class='form-control']");
 public void clickOnZtoA(){
-    clickOnElement(sortByZtoA);
+   // clickOnElement(sortByZtoA);
+   // selectByVisibleTextFromDropDown(sortByZtoA,"Name (Z - A)");
+    selectOptionByIndex(sortByZtoA,2);
 }
     public void selectZtoAoption() {
         //selectByVisibleTextFromDropDown(By.id("input-sort"), "Name (Z - A)");
-        selectByVisibleTextFromDropDown(By.xpath("//select[@id='input-sort']"),"Name (A - Z)");
+       // selectByVisibleTextFromDropDown(By.xpath("//select[@id='input-sort']"),"Name (A - Z)");
+        selectOptionByIndex(sortByZtoA,2);
     }
 
-    public List<String> afterFilterZtoAGetAllProduct()
+    public ArrayList<String> afterFilterZtoAGetAllProduct()
     {
+        selectOptionByIndex(sortByZtoA,2);
         List<WebElement> products = driver.findElements(By.xpath("//h4/a"));
         ArrayList<String> afterSortByZToAProductsName = new ArrayList<>();
         for (WebElement e : products) {
